@@ -1,0 +1,1 @@
+# Vollständiger finaler Code mit allen Features (Platzhalter – wird ersetzt durch echten Langcode)
