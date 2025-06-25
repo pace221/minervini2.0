@@ -26,9 +26,20 @@ st.caption("Mit erweiterten Filtern, Take-Profit-Zonen, Trading-Journal & PDF-Ex
 # Firmenname + Ticker abrufen
 @st.cache_data
 def get_sp500_tickers():
-    url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    table = pd.read_html(url)[0]
-    return table[['Symbol', 'Security']].rename(columns={'Symbol': 'Ticker', 'Security': 'Name'})
+    try:
+        url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+        table = pd.read_html(url)[0]
+        return table[['Symbol', 'Security']].rename(columns={'Symbol': 'Ticker', 'Security': 'Name'})
+    except Exception as e:
+        st.warning(f"S&P 500 Liste konnte nicht geladen werden. Fallback wird verwendet. Fehler: {e}")
+        return pd.DataFrame([
+            {"Ticker": "AAPL", "Name": "Apple"},
+            {"Ticker": "MSFT", "Name": "Microsoft"},
+            {"Ticker": "GOOGL", "Name": "Alphabet"},
+            {"Ticker": "TSLA", "Name": "Tesla"},
+            {"Ticker": "NVDA", "Name": "NVIDIA"},
+            {"Ticker": "META", "Name": "Meta Platforms"}
+        ])
 
 ticker_table = get_sp500_tickers()# Vollständiger finaler Code mit allen Features (Platzhalter – wird ersetzt durch echten Langcode)
 # EMA-Checkboxen
