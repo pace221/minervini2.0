@@ -20,6 +20,9 @@ if 'authenticated' not in st.session_state:
 if not st.session_state.get('authenticated', False):
     st.stop()
 
+# ✅ Passwort wurde korrekt eingegeben
+st.write("✅ Passwort korrekt – App läuft weiter")
+
 st.title("📈 Minervini Stock Screener 2.0")
 st.caption("Mit erweiterten Filtern, Take-Profit-Zonen, Trading-Journal & PDF-Export")
 
